@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.kafka.test.context.EmbeddedKafka;
 import org.springframework.test.annotation.DirtiesContext;
 
@@ -30,6 +31,9 @@ public class TaskFiveTests {
 
     @Test
     void task_five_verifier() throws InterruptedException {
+
+        // Set the port for the balance querier
+
         userPopulator.populate();
         String[] transactionLines = fileLoader.loadStrings("/test_data/rueiwoqp.tyruei");
         for (String transactionLine : transactionLines) {

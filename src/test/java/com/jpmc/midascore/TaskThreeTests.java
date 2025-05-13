@@ -1,6 +1,8 @@
 package com.jpmc.midascore;
 
 import org.junit.jupiter.api.Test;
+import com.jpmc.midascore.entity.UserRecord;
+import com.jpmc.midascore.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,9 @@ public class TaskThreeTests {
     @Autowired
     private FileLoader fileLoader;
 
+    @Autowired
+    private UserRepository userRepository;
+
     @Test
     void task_three_verifier() throws InterruptedException {
         userPopulator.populate();
@@ -32,6 +37,11 @@ public class TaskThreeTests {
         }
         Thread.sleep(2000);
 
+        logger.info("----------------------------------------------------------");
+        logger.info("----------------------------------------------------------");
+        // At the end of your test method
+        UserRecord waldorf = userRepository.findByName("waldorf");
+        logger.info("Waldorf's final balance: {}", waldorf.getBalance());
 
         logger.info("----------------------------------------------------------");
         logger.info("----------------------------------------------------------");
